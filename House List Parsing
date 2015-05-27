@@ -71,19 +71,3 @@ houses = open("./realestate-2.csv", "r")
 for line in houses: 
 	line = line.rstrip()
 	house_parts = line.split(",")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
