@@ -1,0 +1,45 @@
+/* take in button pushes. Read light level every time a button is pushed, and save
+that light level to an array */
+
+int lightArray[14];
+int recButtonPress = LOW;
+int printButtonPress = LOW;
+int recordButtonPin = 7; //or pin 2 or pin 5  (yellow)
+int printButtonPin = 3; // or pin 7 or pin 3 or whatever pin you want - this is for the second button (green)
+
+int lightPin = A0;
+int lightReading;
+int index = 0;
+
+void setup() {
+  pinMode(recordButtonPin,INPUT);
+  pinMode(printButtonPin,INPUT); // declares pins
+  Serial.begin(9600);
+}
+
+void loop() { 
+
+  recButtonPress = digitalRead(recordButtonPin);
+  if (recButtonPress == HIGH) {
+     //the button was just pressed
+    
+     lightArray[index] = analogRead(lightPin);
+     Serial.println("Recording Value: "); // records the light value
+     Serial.println(lightArray[index]);
+     index++;  
+     delay(1000);
+  }
+  
+  printButtonPress = digitalRead(printButtonPin);
+  if (printButtonPress == HIGH) {
+      Serial.println("Output");
+      for (int i=0;i<= 13;i++) { //prints the lightvalue 
+        Serial.println(lightArray[i]);
+      }
+      
+      Serial.println("End");
+      delay(1000);
+  }
+ }
+
+
